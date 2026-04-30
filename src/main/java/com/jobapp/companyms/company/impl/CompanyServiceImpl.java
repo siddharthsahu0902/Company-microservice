@@ -4,6 +4,7 @@ package com.jobapp.companyms.company.impl;
 import com.jobapp.companyms.company.Company;
 import com.jobapp.companyms.company.CompanyRepository;
 import com.jobapp.companyms.company.CompanyService;
+import com.jobapp.companyms.company.dto.ReviewMessage;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
-    private CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
     public CompanyServiceImpl(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
@@ -49,6 +50,11 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public Company getCompany(Long id) {
         return companyRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void updateCompanyRating(ReviewMessage reviewMessage) {
+        System.out.println(reviewMessage.getDescription());
     }
 
     @Override

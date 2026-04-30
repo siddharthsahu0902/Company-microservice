@@ -1,5 +1,6 @@
 package com.jobapp.companyms.company;
 
+import com.jobapp.companyms.company.dto.ReviewMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface CompanyService {
     boolean updateCompany(Long id, Company company);
     boolean deleteCompany(Long id);
     Company getCompany(Long id);
+    public void updateCompanyRating(ReviewMessage reviewMessage);
 }
