@@ -6,12 +6,12 @@ import com.jobapp.companyms.company.CompanyRepository;
 import com.jobapp.companyms.company.CompanyService;
 import com.jobapp.companyms.company.clients.ReviewClient;
 import com.jobapp.companyms.company.dto.ReviewMessage;
-import jakarta.ws.rs.NotFoundException;
 import org.jspecify.annotations.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -58,7 +58,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void updateCompanyRating(ReviewMessage reviewMessage) {
-        Company company = companyRepository.findById(reviewMessage.getCompanyId()).orElseThrow(() -> new NotFoundException("Company not found" +  reviewMessage.getCompanyId()));
+        Company company = companyRepository.findById(reviewMessage.getCompanyId()).orElseThrow(() -> new RuntimeException("Company not found" +  reviewMessage.getCompanyId()));
         double averageRating = reviewClient.getAverageRating(company.getId());
         company.setRating(averageRating);
         companyRepository.save(company);
